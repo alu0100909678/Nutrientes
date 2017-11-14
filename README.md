@@ -1,15 +1,15 @@
-Autor Richard Morales Luis. 
-Ingeniería Informática ULL. 
-Lenguajes y Paradigmas de Programación. 
+Autor Richard Morales Luis.
+Ingeniería Informática ULL.
+Lenguajes y Paradigmas de Programación.
 
-Todos los archivos de la gema se encuentran dentro del directorio alimento, ya que se han dañado los archivosy he tenido que recrear la gema. 
+La gema ha tenido que ser resubida para que funcionara correctamente ya que se ha producido un error con el Rakefile. Las ramas de desarrollo se han mantenido con el código de la antigua gema. El desarrollo de la gema se realizará a partir de esta rama master. 
 
 # Alimento
 
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/Alimento`. To experiment with that code, run `bin/console` for an interactive prompt.
 
-Gema Alimento, creada para calcular el valor energético a partir de sus proteinas, glucidos y lípidos. 
+Gema Alimento, creada para calcular el valor energético a partir de sus proteinas, glucidos y lípidos.
 
 ## Installation
 

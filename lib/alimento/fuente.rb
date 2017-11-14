@@ -1,11 +1,23 @@
-#Richard Morales Luis.
+# encoding: utf-8
+# Este módulo se ha creado para describir
+# dististintas metodologías de programación
+# haciendo uso del Lenguaje de Programación
+# Ruby.
+#
+# Author::    Richard Morales Luis (alu0100909678@ull.edu.es)
+# Copyright:: Cretive Commons
+# License::   Distributes under the same terms as Ruby
 
 module Alimento
+
+  # Esta clase se ha creado para representar un alimento y sus valores energéticos.
+  # Se ha incluido el mixin Comparable.
   class Alimento
 
     attr_reader :name, :proteinas, :glucidos, :lipidos, :valor_energetico
     include Comparable
 
+    # Se asignan los parámetros nombre, proteinas, glucidos y lipidos del alimento.
     def initialize(name, prot, gluc, lip)
       @name = name
       @proteinas = prot
@@ -14,6 +26,7 @@ module Alimento
       @valor_energetico
     end
 
+    # Se muestran el alimento formateado.
     def to_s
       out = ""
       out = @name << " - "
@@ -24,11 +37,13 @@ module Alimento
       out
     end
 
+    # Calcula el vaalor energético de cada alimento.
     def calcular_v_energetico
       @valor_energetico = (@glucidos*4)+(@proteinas*4)+(@lipidos*9)
       @valor_energetico
     end
 
+    # Funcion <=> del módulo Comparable.
     def <=>(other)
       return nil unless other.instance_of? Alimento
       @valor_energetico <=> other.valor_energetico

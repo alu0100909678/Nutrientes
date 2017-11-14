@@ -1,17 +1,23 @@
-#Richard Morales Luis
+# Author::    Richard Morales Luis (alu0100909678@ull.edu.es)
+# Copyright:: Cretive Commons
+# License::   Distributes under the same terms as Ruby
 
 # create a Struct with :value, :next and :prev
   Node = Struct.new(:value, :next, :prev)
 
-  class List #Clase Lista doblemente enlazada.
+  # Esta clase se ha creado para representar una lista doblemente enlazada.
+  # Se ha incluido el mixin Enumerable.
+  class List
     attr_reader :head, :tail, :size
     include Enumerable
+
+    # Se asignan los parámetros head y tail siendo estos nodos en la lista.
     def initialize()
       @head = Node.new(nil,nil,nil)
       @tail = Node.new(nil,nil,nil)
       @size = 0
     end
-
+     # Salida formateada de la lista.
     def to_s
       i = 0
       nodo_out = Node.new(@tail.value,@tail.next,@tail.prev)
@@ -28,7 +34,7 @@
       end
     end
 
-#Metodo insertar en la lista.
+    # Metodo insertar en la lista.
     def push(values)
         nodo_in = Node.new(values,nil,@head)
         if (@size == 0)
@@ -49,7 +55,7 @@
         end
    end
 
-#Sacar elementos por la cola.
+   # Sacar elementos por la cola.
    def pop()
      if(@size==0)
        puts "Lista vacía"
@@ -68,7 +74,7 @@
      end
    end
 
-#Sacar elementos por la cabeza.
+   # Sacar elementos por la cabeza.
    def pop_back()
      if(@size==0)
        puts "Lista vacía"
@@ -87,6 +93,7 @@
      end
    end
 
+   # Método each del mixin Enumerable.
    def each()
      i = 0
      while (i <= @size)
