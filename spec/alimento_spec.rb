@@ -100,6 +100,8 @@ RSpec.describe List do
   before :each do
     @list = List.new()
     @huevo_f = Alimento::Alimento.new("Huevo Frito", 14.1, 0.0, 19.5)
+    @Leche_vaca = Alimento::Alimento.new("Leche Vaca", 3.3, 4.8, 3.2)
+    @Yogurt = Alimento::Alimento.new("Yogurt", 3.8, 4.9, 3.8)
 
   end
 
@@ -145,43 +147,43 @@ RSpec.describe List do
     end
     it "Comprobando any? con lista con varios elemento" do
     @list.push(@huevo_f)
-    @list.push(1)
+    @list.push(@Leche_vaca)
     expect(@list.any?).to eq(true)
     end
     it "Comprobando find con lista con varios elemento" do
     @list.push(@huevo_f)
-    @list.push(1)
-    expect(@list.find {|i| i == 1}).to eq(1)
+    @list.push(@Leche_vaca)
+    expect(@list.find {|i| i == @huevo_f}).to eq(@huevo_f)
     expect(@list.find {|i| i == 2}).to eq(nil)
     end
     it "Comprobando map con lista con varios elemento" do
-    @list.push(1)
-    @list.push(2)
+    @list.push(@huevo_f)
+    @list.push(@Leche_vaca)
     @list.push(3)
-    expect(@list.map{|i| i}).to eq([1,2,3,3])
+    expect(@list.map{|i| i}).to eq([@huevo_f,@Leche_vaca,3,3])
      end
     it "Comprobando drop con lista con varios elemento" do
-      @list.push(1)
-      @list.push(2)
-      @list.push(3)
-     expect(@list.drop(3)).to eq([3])
+      @list.push(@huevo_f)
+      @list.push(@Leche_vaca)
+      @list.push(@Yogurt)
+     expect(@list.drop(2)).to eq([@Leche_vaca,@Yogurt])
     end
    it "Comprobando min con lista con varios elemento" do
-     @list.push(1)
-     @list.push(2)
-     @list.push(3)
-    expect(@list.min).to eq(1)
+     @list.push(@huevo_f)
+     @list.push(@Leche_vaca)
+     @list.push(@Yogurt)
+    expect(@list.min).to eq(@Leche_vaca)
    end
   it "Comprobando max con lista con varios elemento" do
-    @list.push(1)
-    @list.push(2)
-    @list.push(3)
-   expect(@list.max).to eq(3)
+    @list.push(@huevo_f)
+    @list.push(@Leche_vaca)
+    @list.push(@Yogurt)
+   expect(@list.max).to eq(@huevo_f)
   end
  it "Comprobando count con lista con varios elemento" do
-   @list.push(1)
-   @list.push(2)
-   @list.push(3)
+   @list.push(@huevo_f)
+   @list.push(@Leche_vaca)
+   @list.push(@Yogurt)
   expect(@list.count).to eq(4)
     end
   end

@@ -33,7 +33,8 @@ module Alimento
       out << "Proteinas " << @proteinas.to_s << " - "
       out << "Glucidos " << @glucidos.to_s << " - "
       out << "Lipidos " << @lipidos.to_s << " - "
-      out << "Valor energético " << calcular_v_energetico.to_s << "."
+      calcular_v_energetico
+      out << "Valor energético " << @valor_energetico.to_s << "."
       out
     end
 

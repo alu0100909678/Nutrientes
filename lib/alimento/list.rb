@@ -96,16 +96,17 @@
    # Método each del mixin Enumerable.
    def each()
      i = 0
+     node_aux = @tail
      while (i <= @size)
-       yield @tail.value
-       if(@tail.next == nil)
+       yield node_aux.value
+       if(node_aux.next == nil)
          i = @size+1
        else
         i+=1
-         @tail.value = @tail.next.value
-         @tail.next = @tail.next.next
+         node_aux.value = node_aux.next.value
+         node_aux.next = node_aux.next.next
        end
      end
-     yield @tail.value
+     yield node_aux.value
    end
 end
