@@ -24,6 +24,7 @@ RSpec.describe Alimento do
     @Cebolla = Alimento::Alimento.new("Cebolla", 1.3, 5.8, 0.3)
     @Manzana = Alimento::Alimento.new("Manzana", 0.3, 12.4, 0.4)
     @Platanos = Alimento::Alimento.new("Platanos", 1.2, 21.5, 0.2)
+    @Compota = Alimento::Alimento.new("Compota", 1.3, 24.5, 0.0)
   end
 
   context "# comprobando el nombre del alimento" do
@@ -47,6 +48,14 @@ RSpec.describe Alimento do
       it "Se comprueba la salida del alimento formateado" do
 
         expect(@huevo_f.to_s).to eq("Huevo Frito - Proteinas 14.1 - Glucidos 0.0 - Lipidos 19.5 - Valor energético 231.9.")
+      end
+    end
+
+      context "# comprobamos el valor IG del alimento " do
+        it "Se comprueba el IG para la compota "do
+        compota = [[6.9, 6.9, 6.9, 6.7, 6.9, 7.3, 7.0, 7.0, 7.2, 7.1, 6.8, 7.2, 7.3, 7.0, 6.8, 6.7, 6.8, 6.7, 6.9, 6.7, 6.5, 6.8, 6.9, 7.0, 7.1], [4.6, 4.8, 5.3, 5.6, 6.1, 6.5, 6.6, 7.0, 7.0, 6.8, 6.4, 6.3, 6.1, 6.1, 6.2, 6.0, 6.1, 6.1, 6.2, 6.3, 6.4, 6.1, 6.1, 5.7, 5.9]]
+        glucosa = [[4.9, 5.3, 5.9, 6.7, 7.2, 7.6, 8.0, 8.2, 8.2, 8.4, 8.3, 8.3, 8.0, 7.5, 7.1, 6.8, 6.8, 6.9, 6.8, 6.3, 6.2, 6.3, 6.2, 6.3, 6.1], [4.6, 4.8, 5.3, 5.6, 6.1, 6.5, 6.6, 7.0, 7.0, 6.8, 6.4, 6.3, 6.1, 6.1, 6.2, 6.0, 6.1, 6.1, 6.2, 6.3, 6.4, 6.1, 6.1, 5.7, 5.9]]
+        expect(@Compota.indice_glucémico(compota, glucosa)).to eq(49.61696757707774)
       end
     end
 
