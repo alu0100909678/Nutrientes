@@ -14,7 +14,7 @@ module Alimento
   # Se ha incluido el mixin Comparable.
   class Alimento
 
-    attr_reader :name, :proteinas, :glucidos, :lipidos, :valor_energetico
+    attr_reader :name, :proteinas, :glucidos, :lipidos, :valor_energetico, :ig
     include Comparable
 
     # Se asignan los parámetros nombre, proteinas, glucidos y lipidos del alimento.
@@ -24,6 +24,7 @@ module Alimento
       @glucidos = gluc
       @lipidos = lip
       @valor_energetico
+      @ig
     end
 
     # Se muestran el alimento formateado.
@@ -42,6 +43,38 @@ module Alimento
     def calcular_v_energetico
       @valor_energetico = (@glucidos*4)+(@proteinas*4)+(@lipidos*9)
       @valor_energetico
+    end
+
+    # Calcula el valor del indice glucémico mediante programacion funcional.
+    def indice_glucemico(alimento, glucosa)
+
+       ind = [],[]
+       al = []
+       gl = []
+       alimento.each_with_index do |val, index|
+         alimento[index].each_with_index{|val,index2| ind[index] << index2 }
+       end
+
+       ind.each_with_index do |valor,i| #quitamos el valor 0 del indice.
+         ind[i] = valor.select{|val| val > 0}
+       end
+
+       al = [],[]
+       gl = [],[]
+       ind.each_with_index do |val, index|
+         val.collect do |index2|
+            al[index] << (((alimento[index][index2] - alimento[index][0]) + (alimento[index][index2-1] - alimento[index][0]))/2)*5
+            gl[index] << (((glucosa[index][index2] - glucosa[index][0]) + (glucosa[index][index2-1] - glucosa[index][0]))/2)*5
+        end
+       end
+
+       al.each_with_index{|val, index| al[index] = val.reduce(:+)}
+       gl.each_with_index{|val, index| gl[index] = val.reduce(:+)}
+
+       r = []
+       r = al.each_with_index {|val,index| (val+gl[index])*100}
+       @indice_glucemico = r.reduce(:+)/2
+       
     end
 
     # Funcion <=> del módulo Comparable.
