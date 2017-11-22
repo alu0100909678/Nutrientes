@@ -61,20 +61,21 @@ module Alimento
 
        al = [],[]
        gl = [],[]
+       alsum = [],[]
+       glsum = [],[]
+       r = [],[]
+       s = [],[]
        ind.each_with_index do |val, index|
          val.collect do |index2|
-            al[index] << (((alimento[index][index2] - alimento[index][0]) + (alimento[index][index2-1] - alimento[index][0]))/2)*5
-            gl[index] << (((glucosa[index][index2] - glucosa[index][0]) + (glucosa[index][index2-1] - glucosa[index][0]))/2)*5
+            al[index] << ((alimento[index][index2] - alimento[index][0]) + (alimento[index][index2-1] - alimento[index][0]))*2.5
+            gl[index] << ((glucosa[index][index2] - glucosa[index][0]) + (glucosa[index][index2-1] - glucosa[index][0]))*2.5
         end
+            alsum[index] = al[index].reduce(:+)
+            glsum[index] = gl[index].reduce(:+)
        end
-
-       al.each_with_index{|val, index| al[index] = val.reduce(:+)}
-       gl.each_with_index{|val, index| gl[index] = val.reduce(:+)}
-
-       r = []
-       r = al.each_with_index {|val,index| (val+gl[index])*100}
-       @indice_glucemico = r.reduce(:+)/2
-       
+       r = alsum.zip(glsum)
+       alsum.each_with_index{|val,index| s[index] = r[index].reduce(:/)*100}
+       @indice_glucemico = s.reduce(:+)/2
     end
 
     # Funcion <=> del módulo Comparable.
