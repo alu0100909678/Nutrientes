@@ -238,7 +238,7 @@ RSpec.describe Alimento::GAlimento do
   context "# Comprobamos los métodos de ordenación con benchmark"do
 
     it "Metodos de ordenación"do
-      a = [10,9,8,7,6,5,4,3,2,1]
+      a = [@huevo_f,@Yogurt,@Platanos,@Manzana,@Cebolla,@Papas,@Lentejas,@Arroz,@Azucar,@Chocolate,@Aceite,@Salmon,@Atun,@Bacalao,@Pollo,@Cerdo,@Ternera]
       n = 50000
       Benchmark.bm(1) do |x|
         x.report("Método for")   { a.method_for}

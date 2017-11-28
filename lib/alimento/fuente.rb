@@ -80,7 +80,7 @@ module Alimento
 
     # Funcion <=> del módulo Comparable.
     def <=>(other)
-      return nil unless other.instance_of? Alimento
+      return nil unless other.kind_of? Alimento
       @valor_energetico <=> other.valor_energetico
     end
   end
@@ -92,6 +92,7 @@ module Alimento
     def initialize(name, prot, gluc, lip, name_group)
       super(name, prot, gluc, lip)
       @group_name = name_group
+
     end
 
     def to_s
