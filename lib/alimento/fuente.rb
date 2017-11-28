@@ -23,7 +23,7 @@ module Alimento
       @proteinas = prot
       @glucidos = gluc
       @lipidos = lip
-      @valor_energetico
+      @valor_energetico = calcular_v_energetico
       @ig
     end
 
@@ -99,6 +99,46 @@ module Alimento
       out << @group_name.to_s << " - "
       out << super.to_s
       out
+    end
+  end
+end
+
+class Array
+
+def method_for
+    limit = (self.length-1)
+    while limit > 0
+        for i in 0..limit-1
+            if self[i] > self[i+1]
+                self[i],self[i+1] = self[i+1],self[i]
+            end
+        end
+        limit -= 1
+    end
+    #puts self.to_s
+  end
+
+  def method_each
+    change = 0
+    while change == 0
+      a = nil
+      self.each do |item|
+        if(a == nil)
+          a = item
+        elsif (a > item)
+          self.delete(a)
+          self << a
+          a = item
+          change = 1
+        else
+          a = item
+        end
+      end
+      if(change == 1)
+        change = 0
+      else
+        break
+      end
     end
   end
 end

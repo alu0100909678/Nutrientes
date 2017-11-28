@@ -1,6 +1,7 @@
 #Richard Morales Luis.
 
 require "spec_helper"
+require "benchmark"
 
 
 RSpec.describe Alimento do
@@ -175,7 +176,7 @@ RSpec.describe List do
       @list.push(@huevo_f)
       @list.push(@Leche_vaca)
       @list.push(@Yogurt)
-     expect(@list.drop(2)).to eq([@Leche_vaca,@Yogurt])
+     expect(@list.drop(2)).to eq([@Yogurt,@Yogurt])
     end
    it "Comprobando min con lista con varios elemento" do
      @list.push(@huevo_f)
@@ -232,6 +233,18 @@ RSpec.describe Alimento::GAlimento do
       expect(@huevo_f.kind_of?Alimento::Alimento).to eq(true)
       expect(@huevo_f.kind_of?BasicObject).to eq(true)
       expect(@huevo_f.kind_of?Object).to eq(true)
+    end
+  end
+  context "# Comprobamos los métodos de ordenación con benchmark"do
+
+    it "Metodos de ordenación"do
+      a = [10,9,8,7,6,5,4,3,2,1]
+      n = 50000
+      Benchmark.bm(1) do |x|
+        x.report("Método for")   { a.method_for}
+        x.report("Método sort") { a.sort}
+        x.report("Método each")  { a.method_each }
+      end
     end
   end
 end
