@@ -242,8 +242,8 @@ RSpec.describe Alimento::GAlimento do
       n = 50000
       Benchmark.bm(1) do |x|
         x.report("Método for")   { a.method_for}
-        x.report("Método sort") { a.sort}
         x.report("Método each")  { a.method_each }
+        x.report("Método sort")  { a.sort}
       end
     end
   end
